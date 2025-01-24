@@ -20,15 +20,18 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   private logger = new Logger('ChatGateway');
   @SubscribeMessage('chat')
   handleMessage(@MessageBody() payload: AddMessageDto): AddMessageDto {
+    // 받은 메시지의 내용을 로그로 기록
     this.logger.log(`Message received: ${payload.author} - ${payload.body}`);
+    // 모든 클라이언트에게 'chat' 이벤트와 메시지 내용을 브로드캐스트로 전송
     this.server.emit('chat', payload);
+    // 메시지를 반환
     return payload;
   }
 
   handleConnection(socket: Socket) {
     this.logger.log(`Socket connected: ${socket.id}`);
   }
-
+  // 연결 해제된 클라이언트의 소켓 ID를 로그로 기록
   handleDisconnect(socket: Socket) {
     this.logger.log(`Socket disconnected: ${socket.id}`);
   }
