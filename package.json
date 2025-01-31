@@ -29,6 +29,8 @@
     "@nestjs/platform-socket.io": "^11.0.5",
     "@nestjs/websockets": "^11.0.5",
     "apollo-server-express": "^3.13.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
     "clonekakao": "file:",
     "graphql": "^16.10.0",
     "graphql-tools": "^9.0.11",
